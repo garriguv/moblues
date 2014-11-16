@@ -1,0 +1,7 @@
+#import "<%= '_' + entity.name %>.h"
+
+@implementation <%= '_' + entity.name %>
+<% for property in entity.attributes + entity.relationships -%>
+@dynamic <%= property.name %>;
+<% end -%>
+@end

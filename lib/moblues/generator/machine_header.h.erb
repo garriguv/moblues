@@ -18,21 +18,21 @@
 @interface <%= entity.name %> (CoreDataGeneratedAccessors)
 <% for relationship in entity.relationships.select { |e| e.to_many } %>
 <% if relationship.ordered -%>
-- (void)insertObject:(NSManagedObject *)object in<%= relationship.name.capitalize %>AtIndex:(NSUInteger)index;
-- (void)removeObjectFrom<%= relationship.name.capitalize %>AtIndex:(NSUInteger)index;
-- (void)insert<%= relationship.name.capitalize %>:(NSArray *)<%= relationship.name %> atIndexes:(NSIndexSet *)indexes;
-- (void)remove<%= relationship.name.capitalize %>AtIndexes:(NSIndexSet *)indexes;
-- (void)replaceObjectIn<%= relationship.name.capitalize %>AtIndex:(NSUInteger)index withObject:(NSManagedObject *)object;
-- (void)replace<%= relationship.name.capitalize %>AtIndexes:(NSIndexSet *)indexes with<%= relationship.name.capitalize %>:(NSArray *)<%= relationship.name %>;
-- (void)add<%= relationship.name.capitalize %>Object:(NSManagedObject *)object;
-- (void)remove<%= relationship.name.capitalize %>Object:(NSManagedObject *)object;
-- (void)add<%= relationship.name.capitalize %>:(NSOrderedSet *)<%= relationship.name %>;
-- (void)remove<%= relationship.name.capitalize %>:(NSOrderedSet *)<%= relationship.name %>;
+- (void)insertObject:(NSManagedObject *)object in<%= capitalized_name(relationship) %>AtIndex:(NSUInteger)index;
+- (void)removeObjectFrom<%= capitalized_name(relationship) %>AtIndex:(NSUInteger)index;
+- (void)insert<%= capitalized_name(relationship) %>:(NSArray *)<%= relationship.name %> atIndexes:(NSIndexSet *)indexes;
+- (void)remove<%= capitalized_name(relationship) %>AtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectIn<%= capitalized_name(relationship) %>AtIndex:(NSUInteger)index withObject:(NSManagedObject *)object;
+- (void)replace<%= capitalized_name(relationship) %>AtIndexes:(NSIndexSet *)indexes with<%= capitalized_name(relationship) %>:(NSArray *)<%= relationship.name %>;
+- (void)add<%= capitalized_name(relationship) %>Object:(NSManagedObject *)object;
+- (void)remove<%= capitalized_name(relationship) %>Object:(NSManagedObject *)object;
+- (void)add<%= capitalized_name(relationship) %>:(NSOrderedSet *)<%= relationship.name %>;
+- (void)remove<%= capitalized_name(relationship) %>:(NSOrderedSet *)<%= relationship.name %>;
 <% else -%>
-- (void)add<%= relationship.name.capitalize %>Object:(NSManagedObject *)value;
-- (void)remove<%= relationship.name.capitalize %>Object:(NSManagedObject *)value;
-- (void)add<%= relationship.name.capitalize %>:(NSSet *)<%= relationship.name %>;
-- (void)remove<%= relationship.name.capitalize %>:(NSSet *)<%= relationship.name %>;
+- (void)add<%= capitalized_name(relationship) %>Object:(NSManagedObject *)value;
+- (void)remove<%= capitalized_name(relationship) %>Object:(NSManagedObject *)value;
+- (void)add<%= capitalized_name(relationship) %>:(NSSet *)<%= relationship.name %>;
+- (void)remove<%= capitalized_name(relationship) %>:(NSSet *)<%= relationship.name %>;
 <% end -%>
 <% end %>
 @end

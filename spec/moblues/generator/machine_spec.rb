@@ -62,6 +62,17 @@ describe Moblues::Generator::Machine do
 
       it_behaves_like 'machine_generator', 'Book'
     end
+
+    context 'with an entity that has a to-many relationship an a variable name that contains capitals' do
+      let(:entity) { Moblues::DataModel::Entity.new(name:          'Team',
+                                                    attributes:    [],
+                                                    relationships: relationships) }
+      let(:relationships) {[
+        Moblues::DataModel::Relationship.new(name: 'teamMembers', destination_entity: 'Person', to_many: true)
+      ]}
+
+      it_behaves_like 'machine_generator', 'Team'
+    end
   end
 
   def header(name)

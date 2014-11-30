@@ -20,6 +20,10 @@ module Moblues
         "_#{entity.name}.#{extension}"
       end
 
+      def capitalized_name(relationship)
+        relationship.name.sub(/^./) { |first_character| first_character.upcase }
+      end
+
       def header_template
         file_template('machine_header.h')
       end

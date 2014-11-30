@@ -1,10 +1,12 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+#import "Person.h"
+
 @class Book;
 @class Publisher;
 
-@interface _Author : NSManagedObject
+@interface _Author : Person
 @property (nonatomic, strong) NSDate *dob;
 @property (nonatomic, copy) NSString *name;
 
@@ -13,7 +15,7 @@
 @property (nonatomic, strong) Publisher *publisher;
 @end
 
-@interface Author (CoreDataGeneratedAccessors)
+@interface _Author (CoreDataGeneratedAccessors)
 
 - (void)insertObject:(Book *)value inBooksAtIndex:(NSUInteger)index;
 - (void)removeObjectFromBooksAtIndex:(NSUInteger)index;

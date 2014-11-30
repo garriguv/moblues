@@ -9,7 +9,7 @@
 @property (nonatomic, strong) NSSet *editions;
 @end
 
-@interface Book (CoreDataGeneratedAccessors)
+@interface _Book (CoreDataGeneratedAccessors)
 
 - (void)addEditionsObject:(Edition *)value;
 - (void)removeEditionsObject:(Edition *)value;

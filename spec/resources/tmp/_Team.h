@@ -8,7 +8,7 @@
 @property (nonatomic, strong) NSSet *teamMembers;
 @end
 
-@interface Team (CoreDataGeneratedAccessors)
+@interface _Team (CoreDataGeneratedAccessors)
 
 - (void)addTeamMembersObject:(Person *)value;
 - (void)removeTeamMembersObject:(Person *)value;

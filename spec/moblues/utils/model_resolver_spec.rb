@@ -19,7 +19,7 @@ module Moblues
 
         context 'when the model exists' do
           it 'returns the path to the Model contents' do
-            expect(subject.resolve_model(Fixtures.xcdatamodeld)).to eq('spec/resources/Model.xcdatamodeld/2.0.xcdatamodel/contents')
+            expect(subject.resolve_model(Fixtures.xcdatamodeld)).to eq('spec/resources/Model.xcdatamodeld/Model 2.xcdatamodel/contents')
           end
         end
       end

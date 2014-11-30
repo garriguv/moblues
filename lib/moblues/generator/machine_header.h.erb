@@ -1,5 +1,9 @@
 #import <%= '<Foundation/Foundation.h>' %>
 #import <%= '<CoreData/CoreData.h>' %>
+<% if entity.parent_entity != 'NSManagedObject' -%>
+
+#import "<%= entity.parent_entity %>.h"
+<% end -%>
 
 <% for class_name in entity.relationships.map { |rel| rel.destination_entity }.uniq -%>
 @class <%= class_name %>;
@@ -15,7 +19,7 @@
 <% end -%>
 @end
 <% if !entity.relationships.select { |e| e.to_many }.empty? %>
-@interface <%= entity.name %> (CoreDataGeneratedAccessors)
+@interface _<%= entity.name %> (CoreDataGeneratedAccessors)
 <% for relationship in entity.relationships.select { |e| e.to_many } %>
 <% if relationship.ordered -%>
 - (void)insertObject:(<%= relationship.destination_entity %> *)value in<%= capitalized_name(relationship) %>AtIndex:(NSUInteger)index;

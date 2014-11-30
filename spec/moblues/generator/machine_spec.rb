@@ -26,6 +26,7 @@ describe Moblues::Generator::Machine do
 
     context 'with a complex entity' do
       let(:entity) { Moblues::DataModel::Entity.new(name:          'Author',
+                                                    parent_entity: 'Person',
                                                     attributes:    attributes,
                                                     relationships: relationships) }
       let(:attributes) {[

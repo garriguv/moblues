@@ -9,9 +9,9 @@ describe 'moblues' do
     let(:command) { 'generate' }
     let(:options) { %w{--model=spec/resources/Model.xcdatamodeld --human=spec/resources/tmp/human --machine=spec/resources/tmp/machine} }
 
-    after do
-      Fixtures.delete_tmp_files(machine_files + human_files.select { |f| !f.include?('Author') } )
-    end
+    # after do
+    #   Fixtures.delete_tmp_files(machine_files + human_files.select { |f| !f.include?('Author') } )
+    # end
 
     it 'generates human and machine files' do
       perform
@@ -31,6 +31,6 @@ describe 'moblues' do
   end
 
   def entities
-    %w{Author Book Publisher}
+    %w{User Playable Track Playlist}
   end
 end

@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class Edition;
 
 @interface _Book : NSManagedObject
 @property (nonatomic, copy) NSString *name;
@@ -10,9 +11,9 @@
 
 @interface Book (CoreDataGeneratedAccessors)
 
-- (void)addEditionsObject:(NSManagedObject *)value;
-- (void)removeEditionsObject:(NSManagedObject *)value;
-- (void)addEditions:(NSSet *)editions;
-- (void)removeEditions:(NSSet *)editions;
+- (void)addEditionsObject:(Edition *)value;
+- (void)removeEditionsObject:(Edition *)value;
+- (void)addEditions:(NSSet *)values;
+- (void)removeEditions:(NSSet *)values;
 
 @end

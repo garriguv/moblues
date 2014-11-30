@@ -1,8 +1,8 @@
 #import <%= '<Foundation/Foundation.h>' %>
 #import <%= '<CoreData/CoreData.h>' %>
 
-<% for relationship in entity.relationships.select { |e| !e.to_many } -%>
-@class <%= relationship.destination_entity %>;
+<% for class_name in entity.relationships.map { |rel| rel.destination_entity }.uniq -%>
+@class <%= class_name %>;
 <% end -%>
 
 @interface _<%= entity.name %> : <%= entity.parent_entity %>
@@ -18,21 +18,21 @@
 @interface <%= entity.name %> (CoreDataGeneratedAccessors)
 <% for relationship in entity.relationships.select { |e| e.to_many } %>
 <% if relationship.ordered -%>
-- (void)insertObject:(NSManagedObject *)object in<%= capitalized_name(relationship) %>AtIndex:(NSUInteger)index;
+- (void)insertObject:(<%= relationship.destination_entity %> *)value in<%= capitalized_name(relationship) %>AtIndex:(NSUInteger)index;
 - (void)removeObjectFrom<%= capitalized_name(relationship) %>AtIndex:(NSUInteger)index;
-- (void)insert<%= capitalized_name(relationship) %>:(NSArray *)<%= relationship.name %> atIndexes:(NSIndexSet *)indexes;
+- (void)insert<%= capitalized_name(relationship) %>:(NSArray *)values atIndexes:(NSIndexSet *)indexes;
 - (void)remove<%= capitalized_name(relationship) %>AtIndexes:(NSIndexSet *)indexes;
-- (void)replaceObjectIn<%= capitalized_name(relationship) %>AtIndex:(NSUInteger)index withObject:(NSManagedObject *)object;
-- (void)replace<%= capitalized_name(relationship) %>AtIndexes:(NSIndexSet *)indexes with<%= capitalized_name(relationship) %>:(NSArray *)<%= relationship.name %>;
-- (void)add<%= capitalized_name(relationship) %>Object:(NSManagedObject *)object;
-- (void)remove<%= capitalized_name(relationship) %>Object:(NSManagedObject *)object;
-- (void)add<%= capitalized_name(relationship) %>:(NSOrderedSet *)<%= relationship.name %>;
-- (void)remove<%= capitalized_name(relationship) %>:(NSOrderedSet *)<%= relationship.name %>;
+- (void)replaceObjectIn<%= capitalized_name(relationship) %>AtIndex:(NSUInteger)index withObject:(<%= relationship.destination_entity %> *)value;
+- (void)replace<%= capitalized_name(relationship) %>AtIndexes:(NSIndexSet *)indexes with<%= capitalized_name(relationship) %>:(NSArray *)values;
+- (void)add<%= capitalized_name(relationship) %>Object:(<%= relationship.destination_entity %> *)value;
+- (void)remove<%= capitalized_name(relationship) %>Object:(<%= relationship.destination_entity %> *)value;
+- (void)add<%= capitalized_name(relationship) %>:(NSOrderedSet *)values;
+- (void)remove<%= capitalized_name(relationship) %>:(NSOrderedSet *)values;
 <% else -%>
-- (void)add<%= capitalized_name(relationship) %>Object:(NSManagedObject *)value;
-- (void)remove<%= capitalized_name(relationship) %>Object:(NSManagedObject *)value;
-- (void)add<%= capitalized_name(relationship) %>:(NSSet *)<%= relationship.name %>;
-- (void)remove<%= capitalized_name(relationship) %>:(NSSet *)<%= relationship.name %>;
+- (void)add<%= capitalized_name(relationship) %>Object:(<%= relationship.destination_entity %> *)value;
+- (void)remove<%= capitalized_name(relationship) %>Object:(<%= relationship.destination_entity %> *)value;
+- (void)add<%= capitalized_name(relationship) %>:(NSSet *)values;
+- (void)remove<%= capitalized_name(relationship) %>:(NSSet *)values;
 <% end -%>
 <% end %>
 @end

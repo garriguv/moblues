@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class Book;
 
 @interface _Author : NSManagedObject
 @property (nonatomic, strong) NSDate *dob;
@@ -11,9 +12,9 @@
 
 @interface Author (CoreDataGeneratedAccessors)
 
-- (void)addBooksObject:(NSManagedObject *)value;
-- (void)removeBooksObject:(NSManagedObject *)value;
-- (void)addBooks:(NSSet *)books;
-- (void)removeBooks:(NSSet *)books;
+- (void)addBooksObject:(Book *)value;
+- (void)removeBooksObject:(Book *)value;
+- (void)addBooks:(NSSet *)values;
+- (void)removeBooks:(NSSet *)values;
 
 @end

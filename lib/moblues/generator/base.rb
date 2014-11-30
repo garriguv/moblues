@@ -1,4 +1,4 @@
-require 'moblues/reader/type_mapper'
+require 'moblues/reader/type'
 
 module Moblues
   module Generator

@@ -3,7 +3,7 @@ require 'moblues/data_model/relationship'
 
 module Moblues
   module Reader
-    class RelationshipMapper
+    class Relationship
       def relationship(xml)
         DataModel::Relationship.new(
           name: xml.attributes['name'],

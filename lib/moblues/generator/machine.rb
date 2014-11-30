@@ -4,7 +4,7 @@ module Moblues
   module Generator
     class Machine < Base
       def initialize(params)
-        @type_mapper = Reader::TypeMapper.new
+        @type_reader = Reader::Type.new
         super(params)
       end
 
@@ -14,7 +14,7 @@ module Moblues
       end
 
       private
-      attr_reader :type_mapper
+      attr_reader :type_reader
 
       def format_name(entity, extension)
         "_#{entity.name}.#{extension}"

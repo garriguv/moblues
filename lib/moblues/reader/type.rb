@@ -1,6 +1,6 @@
 module Moblues
   module Reader
-    class TypeMapper
+    class Type
       def map_type_str(type_str)
         case type_str
         when 'String'

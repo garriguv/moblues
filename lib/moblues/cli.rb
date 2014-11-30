@@ -8,9 +8,9 @@ module Moblues
     option :machine, :required => true, :desc => 'Path where the machine files will be stored'
     def generate
       mkdir([options[:human], options[:machine]])
-      reader = Moblues::Reader::ModelReader.new
+      reader = Moblues::Reader::Model.new
       generator = Moblues::Generator::Model.new(human_dir: options[:human], machine_dir: options[:machine])
-      entities = reader.parse_model(options[:model])
+      entities = reader.model(options[:model])
       generator.generate(entities)
     end
 

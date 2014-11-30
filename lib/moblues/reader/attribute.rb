@@ -1,23 +1,23 @@
 require 'rexml/document'
 require 'moblues/data_model/attribute'
-require 'moblues/reader/type_mapper'
+require 'moblues/reader/type'
 
 module Moblues
   module Reader
-    class AttributeMapper
+    class Attribute
       def initialize
-        @type_mapper = TypeMapper.new
+        @type_reader = Type.new
       end
 
       def attribute(xml)
        DataModel::Attribute.new(
          name: xml.attributes['name'],
-         type: type_mapper.map_type_str(xml.attributes['attributeType'])
+         type: type_reader.map_type_str(xml.attributes['attributeType'])
        )
       end
 
       private
-      attr_reader :type_mapper
+      attr_reader :type_reader
     end
   end
 end

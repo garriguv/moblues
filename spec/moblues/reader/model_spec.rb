@@ -1,10 +1,10 @@
 require 'spec_helper'
-require 'moblues/reader/model_reader'
+require 'moblues/reader/model'
 
-describe Moblues::Reader::ModelReader do
+describe Moblues::Reader::Model do
   let(:model) { build(:model) }
   let(:model_resolver) { double(Moblues::Utils::ModelResolver) }
-  let(:entity_mapper) { double(Moblues::Reader::EntityMapper) }
+  let(:entity_reader) { double(Moblues::Reader::Entity) }
   let(:file_str) {
     <<EOF
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -34,11 +34,11 @@ describe Moblues::Reader::ModelReader do
 EOF
   }
 
-  subject { described_class.new(resolver: model_resolver, mapper: entity_mapper) }
+  subject { described_class.new(resolver: model_resolver, reader: entity_reader) }
 
   before do
     allow(model_resolver).to receive(:resolve_model)
-    allow(entity_mapper).to receive(:entity) { build(:entity) }
+    allow(entity_reader).to receive(:entity) { build(:entity) }
     allow(File).to receive(:read) { file_str }
   end
 
@@ -46,21 +46,21 @@ EOF
     it 'resolves the model contents' do
       expect(model_resolver).to receive(:resolve_model).with('path')
 
-      subject.parse_model('path')
+      subject.model('path')
     end
 
     it 'maps the model' do
-      expect(entity_mapper).to receive(:entity).exactly(3).times
+      expect(entity_reader).to receive(:entity).exactly(3).times
 
-      subject.parse_model('path')
+      subject.model('path')
     end
 
     it 'returns an array of entities' do
-      expect(subject.parse_model('path')).to eq([build(:entity), build(:entity), build(:entity)])
+      expect(subject.model('path')).to eq([build(:entity), build(:entity), build(:entity)])
     end
 
     it 'raises an assertion if path is nil' do
-      expect { subject.parse_model(nil) }.to raise_exception
+      expect { subject.model(nil) }.to raise_exception
     end
   end
 end

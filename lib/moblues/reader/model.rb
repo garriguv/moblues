@@ -1,29 +1,29 @@
 require 'rexml/document'
 require 'moblues/utils/model_resolver'
-require 'moblues/reader/entity_mapper'
+require 'moblues/reader/entity'
 
 module Moblues
   module Reader
-    class ModelReader
+    class Model
       def initialize(params = defaults)
         @model_resolver = params[:resolver]
-        @entity_mapper = params[:mapper]
+        @entity_reader = params[:reader]
       end
 
-      def parse_model(path)
+      def model(path)
         raise ArgumentError unless path
         content_path = model_resolver.resolve_model(path)
         xml = REXML::Document.new(File.read(content_path))
-        xml.root.elements.to_a('entity').map { |entity| entity_mapper.entity(entity) }
+        xml.root.elements.to_a('entity').map { |entity| entity_reader.entity(entity) }
       end
 
       private
-      attr_reader :model_resolver, :entity_mapper
+      attr_reader :model_resolver, :entity_reader
 
       def defaults
         {
           resolver: Utils::ModelResolver.new,
-          mapper:   EntityMapper.new
+          reader:   Entity.new
         }
       end
     end

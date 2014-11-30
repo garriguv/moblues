@@ -7,11 +7,11 @@
 
 @interface _<%= entity.name %> : <%= entity.parent_entity %>
 <% for attribute in entity.attributes -%>
-@property (<%= type_mapper.property_attributes(attribute.type).join(', ') %>) <%= type_mapper.property_type(attribute.type)%><%= attribute.name %>;
+@property (<%= type_reader.property_attributes(attribute.type).join(', ') %>) <%= type_reader.property_type(attribute.type)%><%= attribute.name %>;
 <% end -%>
 
 <% for relationship in entity.relationships -%>
-@property (nonatomic, strong) <%= type_mapper.relationship_type(relationship) %><%= relationship.name %>;
+@property (nonatomic, strong) <%= type_reader.relationship_type(relationship) %><%= relationship.name %>;
 <% end -%>
 @end
 <% if !entity.relationships.select { |e| e.to_many }.empty? %>

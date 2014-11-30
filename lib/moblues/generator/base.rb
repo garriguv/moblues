@@ -1,3 +1,4 @@
+require 'erb'
 require 'moblues/reader/type'
 
 module Moblues

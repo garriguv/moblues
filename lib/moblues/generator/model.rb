@@ -1,3 +1,6 @@
+require 'moblues/generator/machine'
+require 'moblues/generator/human'
+
 module Moblues
   module Generator
     class Model

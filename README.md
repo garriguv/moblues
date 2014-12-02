@@ -1,4 +1,4 @@
-# Moblues [![Build Status](https://travis-ci.org/garriguv/moblues.svg)](https://travis-ci.org/garriguv/moblues) [![Code Climate](https://codeclimate.com/github/garriguv/moblues/badges/gpa.svg)](https://codeclimate.com/github/garriguv/moblues) [![Test Coverage](https://codeclimate.com/github/garriguv/moblues/badges/coverage.svg)](https://codeclimate.com/github/garriguv/moblues)
+# Moblues [![Gem Version](https://badge.fury.io/rb/moblues.svg)](http://badge.fury.io/rb/moblues) [![Build Status](https://travis-ci.org/garriguv/moblues.svg)](https://travis-ci.org/garriguv/moblues) [![Code Climate](https://codeclimate.com/github/garriguv/moblues/badges/gpa.svg)](https://codeclimate.com/github/garriguv/moblues) [![Test Coverage](https://codeclimate.com/github/garriguv/moblues/badges/coverage.svg)](https://codeclimate.com/github/garriguv/moblues)
 
 Generates files for entities defined in a Core Data model. Inspired by [mogenerator](https://github.com/rentzsch/mogenerator).
 

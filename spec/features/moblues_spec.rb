@@ -7,17 +7,17 @@ describe 'moblues' do
 
   describe 'generate' do
     let(:command) { 'generate' }
-    let(:options) { %w{--model=spec/resources/Model.xcdatamodeld --human=spec/resources/tmp/human --machine=spec/resources/tmp/machine} }
+    let(:options) { %w{--model=spec/resources/Model.xcdatamodeld --human=spec/resources/tmp/objc/human --machine=spec/resources/tmp/objc/machine} }
 
     after do
-      Fixtures.delete_tmp_files(machine_files + human_files.select { |f| !f.include?('Playlist') } )
+      Fixtures.delete_tmp_files(machine_files + human_files.select { |f| !f.include?('Playlist') }, :objc)
     end
 
     it 'generates human and machine files' do
       perform
 
       (machine_files + human_files).each do |file|
-        expect(Fixtures.read_file(Fixtures.generated_dir, file)).to eq(Fixtures.read_file(Fixtures.expected_dir, file))
+        expect(Fixtures.read_file(Fixtures.generated_dir(:objc), file)).to eq(Fixtures.read_file(Fixtures.expected_dir(:objc), file))
       end
     end
   end

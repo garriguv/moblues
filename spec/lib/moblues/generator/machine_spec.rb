@@ -3,10 +3,11 @@ require 'moblues/generator/machine'
 require 'moblues/data_model'
 
 describe Moblues::Generator::Machine do
-  subject { described_class.new(output_dir: Fixtures.generated_dir) }
+  subject { described_class.new(output_dir: Fixtures.generated_dir(:objc)) }
 
   after do
-    Fixtures.delete_tmp_files(%w{_Author.h _Author.m _Person.h _Person.m _Book.h _Book.m})
+    tmp_files = %w{Author Person Book Team}.map { |klass| %W{_#{klass}.h _#{klass}.m} }.flatten
+    Fixtures.delete_tmp_files(tmp_files, :objc)
   end
 
   describe '#generate' do
@@ -14,13 +15,13 @@ describe Moblues::Generator::Machine do
       it 'generates a header' do
         subject.generate(entity)
 
-        expect(Fixtures.generated_file_content(header(name))).to eq(Fixtures.expected_content(header(name)))
+        expect(Fixtures.generated_file_content(header(name), :objc)).to eq(Fixtures.expected_content(header(name), :objc))
       end
 
       it 'generates an implementation' do
         subject.generate(entity)
 
-        expect(Fixtures.generated_file_content(implementation(name))).to eq(Fixtures.expected_content(implementation(name)))
+        expect(Fixtures.generated_file_content(implementation(name), :objc)).to eq(Fixtures.expected_content(implementation(name), :objc))
       end
     end
 

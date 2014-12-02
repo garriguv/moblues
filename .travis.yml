@@ -5,4 +5,4 @@ rvm:
 script: bundle exec rake spec
 addons:
     code_climate:
-        repo_token: 97374e550763cfe3be1c90ba93d9ea9e5b4ea47e1dead9b554f5f4a18b3a6f75
+        repo_token: 2d867bb364165eacb9d95cee24b1aa1ab831ef4beaaff0f100025cf9574f02c1

@@ -5,6 +5,8 @@ require 'moblues/data_model'
 describe Moblues::Generator::Objc::Human do
   subject { described_class.new(output_dir: Fixtures.generated_dir(:objc)) }
 
+  let(:entity) { Moblues::DataModel::Entity.new(name: 'Author') }
+
   after do
     Fixtures.delete_tmp_files(%w{Author.h Author.m}, :objc)
   end
@@ -49,26 +51,5 @@ describe Moblues::Generator::Objc::Human do
         expect(Fixtures.generated_file_content('Author.m', :objc)).to eq('do nothing')
       end
     end
-  end
-
-  def entity
-    Moblues::DataModel::Entity.new(name:          'Author',
-                                   attributes:    attributes,
-                                   relationships: relationships)
-  end
-
-  def attributes
-    [
-      Moblues::DataModel::Attribute.new(name: 'dob', type: :date),
-      Moblues::DataModel::Attribute.new(name: 'name', type: :string)
-    ]
-  end
-
-  def relationships
-    [
-      Moblues::DataModel::Relationship.new(name: 'books', destination_entity: 'Book', to_many: true, ordered: true),
-      Moblues::DataModel::Relationship.new(name: 'essays', destination_entity: 'Book', to_many: true),
-      Moblues::DataModel::Relationship.new(name: 'publisher', destination_entity: 'Publisher')
-    ]
   end
 end

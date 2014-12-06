@@ -54,5 +54,4 @@ describe Moblues::Generator::Swift::Machine do
   def file(name)
     "_#{name}.swift"
   end
-
 end

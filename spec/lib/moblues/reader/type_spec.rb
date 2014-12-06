@@ -14,6 +14,9 @@ describe Moblues::Reader::Type do
     it_behaves_like 'map_type_str', 'Integer 32',     :number
     it_behaves_like 'map_type_str', 'Integer 64',     :number
     it_behaves_like 'map_type_str', 'Boolean',        :number
+    it_behaves_like 'map_type_str', 'Float',          :number
+    it_behaves_like 'map_type_str', 'Double',         :number
+    it_behaves_like 'map_type_str', 'Decimal',        :decimal
     it_behaves_like 'map_type_str', 'Date',           :date
     it_behaves_like 'map_type_str', 'Binary',         :data
     it_behaves_like 'map_type_str', 'Transformable',  :id
@@ -30,11 +33,12 @@ describe Moblues::Reader::Type do
       end
     end
 
-    it_behaves_like 'property_type', :string, 'NSString *'
-    it_behaves_like 'property_type', :number, 'NSNumber *'
-    it_behaves_like 'property_type', :date,   'NSDate *'
-    it_behaves_like 'property_type', :data,   'NSData *'
-    it_behaves_like 'property_type', :id,     'id '
+    it_behaves_like 'property_type', :string,  'NSString *'
+    it_behaves_like 'property_type', :number,  'NSNumber *'
+    it_behaves_like 'property_type', :decimal, 'NSDecimalNumber *'
+    it_behaves_like 'property_type', :date,    'NSDate *'
+    it_behaves_like 'property_type', :data,    'NSData *'
+    it_behaves_like 'property_type', :id,      'id '
 
     it 'raises an exception when the type is unknown' do
       expect { subject.property_type(:unknown) }.to raise_exception(ArgumentError)
@@ -48,11 +52,12 @@ describe Moblues::Reader::Type do
       end
     end
 
-    it_behaves_like 'property_attributes', :string, %w(nonatomic copy)
-    it_behaves_like 'property_attributes', :number, %w(nonatomic strong)
-    it_behaves_like 'property_attributes', :date,   %w(nonatomic strong)
-    it_behaves_like 'property_attributes', :data,   %w(nonatomic strong)
-    it_behaves_like 'property_attributes', :id,     %w(nonatomic strong)
+    it_behaves_like 'property_attributes', :string,  %w(nonatomic copy)
+    it_behaves_like 'property_attributes', :number,  %w(nonatomic strong)
+    it_behaves_like 'property_attributes', :decimal, %w(nonatomic strong)
+    it_behaves_like 'property_attributes', :date,    %w(nonatomic strong)
+    it_behaves_like 'property_attributes', :data,    %w(nonatomic strong)
+    it_behaves_like 'property_attributes', :id,      %w(nonatomic strong)
 
     it 'raises an exception when the type is unknown' do
       expect { subject.property_attributes(:unknown) }.to raise_exception(ArgumentError)

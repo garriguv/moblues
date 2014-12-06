@@ -1,0 +1,12 @@
+import Foundation
+import CoreData
+
+class _<%= entity.name %>: <%= entity.parent_entity %> {
+<% for attribute in entity.attributes -%>
+    @NSManaged var <%= attribute.name %>: <%= type.attribute_type(attribute) %>
+<% end -%>
+
+<% for relationship in entity.relationships -%>
+    @NSManaged var <%= relationship.name %>: <%= type.relationship_type(relationship) %>
+<% end -%>
+}

@@ -9,7 +9,10 @@ module Moblues
   def generate(model, human_dir, machine_dir)
     mkdir([human_dir, machine_dir])
     reader = Moblues::Reader::Model.new
-    generator = Moblues::Generator::Model.new(human_dir: human_dir, machine_dir: machine_dir)
+    generator = Moblues::Generator::Base::Model.new(human_dir:   human_dir,
+                                                    machine_dir: machine_dir,
+                                                    human:       Moblues::Generator::Objc::Human.new,
+                                                    machine:     Moblues::Generator::Objc::Machine.new)
     entities = reader.model(model)
     generator.generate(entities)
   end

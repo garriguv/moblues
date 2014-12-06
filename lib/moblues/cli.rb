@@ -1,6 +1,4 @@
 require 'thor'
-require 'moblues/reader/model'
-require 'moblues/generator/model'
 
 module Moblues
   class CLI < Thor

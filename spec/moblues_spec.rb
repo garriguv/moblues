@@ -12,12 +12,12 @@ describe Moblues do
     let(:machine) { 'machine/path' }
 
     let(:model_reader) { double(Moblues::Reader::Model) }
-    let(:model_generator) { double(Moblues::Generator::Model) }
+    let(:model_generator) { double(Moblues::Generator::Base::Model) }
     let(:entities) { [build(:entity)] }
 
     before do
       allow(Moblues::Reader::Model).to receive(:new) { model_reader }
-      allow(Moblues::Generator::Model).to receive(:new) { model_generator }
+      allow(Moblues::Generator::Base::Model).to receive(:new) { model_generator }
     end
 
     it 'created the directories reads the model and generates the files' do

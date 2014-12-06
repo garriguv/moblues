@@ -3,7 +3,7 @@ require 'moblues/generator/objc/machine'
 require 'moblues/data_model'
 
 describe Moblues::Generator::Objc::Machine do
-  subject { described_class.new(output_dir: Fixtures.generated_dir(:objc)) }
+  let(:output_dir) { Fixtures.generated_dir(:objc) }
 
   after do
     tmp_files = %w{Author Person Book Team}.map { |klass| %W{_#{klass}.h _#{klass}.m} }.flatten
@@ -13,13 +13,13 @@ describe Moblues::Generator::Objc::Machine do
   describe '#generate' do
     shared_examples_for 'machine_generator' do |name|
       it 'generates a header' do
-        subject.generate(entity)
+        subject.generate(output_dir, entity)
 
         expect(Fixtures.generated_file_content(header(name), :objc)).to eq(Fixtures.expected_content(header(name), :objc))
       end
 
       it 'generates an implementation' do
-        subject.generate(entity)
+        subject.generate(output_dir, entity)
 
         expect(Fixtures.generated_file_content(implementation(name), :objc)).to eq(Fixtures.expected_content(implementation(name), :objc))
       end

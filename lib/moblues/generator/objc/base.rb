@@ -5,20 +5,19 @@ module Moblues
   module Generator
     module Objc
       class Base
-        def initialize(params)
-          @output_dir = params.fetch(:output_dir)
+        def initialize
           @type_generator = Type.new
         end
 
         protected
-        attr_reader :output_dir, :type_generator
+        attr_reader :type_generator
 
-        def write_header(entity)
-          write_file(header_file(entity), header(entity))
+        def write_header(output_dir, entity)
+          write_file(header_file(output_dir, entity), header(entity))
         end
 
-        def write_implementation(entity)
-          write_file(implementation_file(entity), implementation(entity))
+        def write_implementation(output_dir, entity)
+          write_file(implementation_file(output_dir, entity), implementation(entity))
         end
 
         def write_file(file, text)
@@ -27,11 +26,11 @@ module Moblues
           end
         end
 
-        def header_file(entity)
+        def header_file(output_dir, entity)
           File.join(output_dir, format_name(entity, 'h'))
         end
 
-        def implementation_file(entity)
+        def implementation_file(output_dir, entity)
           File.join(output_dir, format_name(entity, 'm'))
         end
 

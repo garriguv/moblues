@@ -5,16 +5,15 @@ module Moblues
   module Generator
     module Swift
       class Base
-        def initialize(params)
-          @output_dir = params.fetch(:output_dir)
+        def initialize
           @type = Generator::Base::Type.new
         end
 
         protected
-        attr_reader :output_dir, :type
+        attr_reader :type
 
-        def write_swift(entity, file_type)
-          write_file(file_path(entity), render(entity, file_type))
+        def write_swift(output_dir, entity, file_type)
+          write_file(file_path(output_dir, entity), render(entity, file_type))
         end
 
         def write_file(file, text)
@@ -23,7 +22,7 @@ module Moblues
           end
         end
 
-        def file_path(entity)
+        def file_path(output_dir, entity)
           raise NotImplemented
         end
 

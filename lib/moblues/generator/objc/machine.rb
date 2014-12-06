@@ -4,9 +4,9 @@ module Moblues
   module Generator
     module Objc
       class Machine < Base
-        def generate(entity)
-          write_header(entity)
-          write_implementation(entity)
+        def generate(output_dir, entity)
+          write_header(output_dir, entity)
+          write_implementation(output_dir, entity)
         end
 
         private

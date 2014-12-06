@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'moblues/generator/swift/machine'
 
 describe Moblues::Generator::Swift::Machine do
-  subject { described_class.new(output_dir: Fixtures.generated_dir(:swift)) }
+  let(:output_dir) { Fixtures.generated_dir(:swift) }
 
   after do
     tmp_files = %w{Author Book}.map { |klass| "_#{klass}.swift" }
@@ -12,7 +12,7 @@ describe Moblues::Generator::Swift::Machine do
   describe '#generate' do
     shared_examples_for 'machine_generator' do |name|
       it 'generates a swift file' do
-        subject.generate(entity)
+        subject.generate(output_dir, entity)
 
         expect(Fixtures.generated_file_content(file(name), :swift)).to eq(Fixtures.expected_content(file(name), :swift))
       end

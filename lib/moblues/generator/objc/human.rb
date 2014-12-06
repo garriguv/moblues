@@ -4,9 +4,9 @@ module Moblues
   module Generator
     module Objc
       class Human < Base
-        def generate(entity)
-          write_header(entity) unless File.exists?(header_file(entity))
-          write_implementation(entity) unless File.exists?(implementation_file(entity))
+        def generate(output_dir, entity)
+          write_header(output_dir, entity) unless File.exists?(header_file(output_dir, entity))
+          write_implementation(output_dir, entity) unless File.exists?(implementation_file(output_dir, entity))
         end
 
         private

@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'moblues/generator/swift/human'
 
 describe Moblues::Generator::Swift::Human do
-  subject { described_class.new(output_dir: Fixtures.generated_dir(:swift)) }
+  let(:output_dir) { Fixtures.generated_dir(:swift) }
 
   let(:entity) { Moblues::DataModel::Entity.new(name: 'Author') }
 
@@ -12,7 +12,7 @@ describe Moblues::Generator::Swift::Human do
 
   describe '#generate' do
     it 'generates a human file' do
-      subject.generate(entity)
+      subject.generate(output_dir, entity)
 
       expect(Fixtures.generated_file_content('Author.swift', :swift)).to eq(Fixtures.expected_content('Author.swift', :swift))
     end
@@ -25,7 +25,7 @@ describe Moblues::Generator::Swift::Human do
       end
 
       it 'does not overwrite the it' do
-        subject.generate(entity)
+        subject.generate(output_dir, entity)
 
         expect(Fixtures.generated_file_content('Author.swift', :swift)).to eq('do nothing')
       end

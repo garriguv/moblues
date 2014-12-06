@@ -9,12 +9,12 @@ describe Moblues::Generator::Model do
     let(:human_dir) { 'human/dir'}
     let(:machine_dir) { 'machine/dir'}
 
-    let(:human) { double(Moblues::Generator::Human) }
-    let(:machine) { double(Moblues::Generator::Machine) }
+    let(:human) { double(Moblues::Generator::Objc::Human) }
+    let(:machine) { double(Moblues::Generator::Objc::Machine) }
 
     before do
-      allow(Moblues::Generator::Human).to receive(:new).with(output_dir: human_dir) { human }
-      allow(Moblues::Generator::Machine).to receive(:new).with(output_dir: machine_dir) { machine }
+      allow(Moblues::Generator::Objc::Human).to receive(:new).with(output_dir: human_dir) { human }
+      allow(Moblues::Generator::Objc::Machine).to receive(:new).with(output_dir: machine_dir) { machine }
     end
 
     it 'generates the human and machine files' do

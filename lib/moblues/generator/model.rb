@@ -1,12 +1,12 @@
-require 'moblues/generator/machine'
-require 'moblues/generator/human'
+require 'moblues/generator/objc/machine'
+require 'moblues/generator/objc/human'
 
 module Moblues
   module Generator
     class Model
       def initialize(params)
-        @human = Human.new(output_dir: params.fetch(:human_dir))
-        @machine = Machine.new(output_dir: params.fetch(:machine_dir))
+        @human = Objc::Human.new(output_dir: params.fetch(:human_dir))
+        @machine = Objc::Machine.new(output_dir: params.fetch(:machine_dir))
       end
 
       def generate(entities)

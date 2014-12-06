@@ -1,8 +1,8 @@
 require 'spec_helper'
-require 'moblues/generator/machine'
+require 'moblues/generator/objc/machine'
 require 'moblues/data_model'
 
-describe Moblues::Generator::Machine do
+describe Moblues::Generator::Objc::Machine do
   subject { described_class.new(output_dir: Fixtures.generated_dir(:objc)) }
 
   after do

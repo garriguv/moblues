@@ -1,4 +1,4 @@
-require 'moblues/generator/base'
 require 'moblues/generator/model'
-require 'moblues/generator/machine'
-require 'moblues/generator/human'
+require 'moblues/generator/objc/base'
+require 'moblues/generator/objc/machine'
+require 'moblues/generator/objc/human'

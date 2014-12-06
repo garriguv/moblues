@@ -24,14 +24,16 @@ Or install it yourself as:
 
 ```
 Usage:
-  moblues generate --human=HUMAN --machine=MACHINE --model=MODEL
+moblues generate --human=HUMAN --machine=MACHINE --model=MODEL
 
 Options:
-  --model=MODEL      # CoreData model path
-  --human=HUMAN      # Path where the human files will be stored
-  --machine=MACHINE  # Path where the machine files will be stored
+--model=MODEL      # Core Data model path
+--human=HUMAN      # Path where the human files will be stored
+--machine=MACHINE  # Path where the machine files will be stored
+[--lang=LANG]      # The language used to generate the files (objc or swift)
+                   # Default: objc
 
-generate the machine and human files
+generate the machine and human files for entities contained in a Core Data model
 ```
 
 ## Contributing

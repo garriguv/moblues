@@ -1,3 +1,6 @@
+require 'erb'
+require 'moblues/generator/swift/type'
+
 module Moblues
   module Generator
     module Swift

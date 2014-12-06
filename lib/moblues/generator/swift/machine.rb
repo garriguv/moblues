@@ -1,3 +1,5 @@
+require 'moblues/generator/swift/base'
+
 module Moblues
   module Generator
     module Swift

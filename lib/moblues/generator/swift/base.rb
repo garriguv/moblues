@@ -1,5 +1,5 @@
 require 'erb'
-require 'moblues/generator/swift/type'
+require 'moblues/generator/base/type'
 
 module Moblues
   module Generator
@@ -7,7 +7,7 @@ module Moblues
       class Base
         def initialize(params)
           @output_dir = params.fetch(:output_dir)
-          @type = Type.new
+          @type = Generator::Base::Type.new
         end
 
         protected

@@ -1,5 +1,5 @@
 require 'erb'
-require 'moblues/reader/type'
+require 'moblues/generator/objc/type'
 
 module Moblues
   module Generator
@@ -7,10 +7,11 @@ module Moblues
       class Base
         def initialize(params)
           @output_dir = params.fetch(:output_dir)
+          @type_generator = Type.new
         end
 
         protected
-        attr_reader :output_dir
+        attr_reader :output_dir, :type_generator
 
         def write_header(entity)
           write_file(header_file(entity), header(entity))

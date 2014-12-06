@@ -4,19 +4,12 @@ module Moblues
   module Generator
     module Objc
       class Machine < Base
-        def initialize(params)
-          @type_reader = Reader::Type.new
-          super(params)
-        end
-
         def generate(entity)
           write_header(entity)
           write_implementation(entity)
         end
 
         private
-        attr_reader :type_reader
-
         def format_name(entity, extension)
           "_#{entity.name}.#{extension}"
         end

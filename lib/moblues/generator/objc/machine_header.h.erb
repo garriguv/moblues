@@ -11,11 +11,11 @@
 
 @interface _<%= entity.name %> : <%= entity.parent_entity %>
 <% for attribute in entity.attributes -%>
-@property (<%= type_reader.property_attributes(attribute.type).join(', ') %>) <%= type_reader.property_type(attribute.type)%><%= attribute.name %>;
+@property (<%= type_generator.property_attributes(attribute).join(', ') %>) <%= type_generator.attribute_type(attribute)%><%= attribute.name %>;
 <% end -%>
 
 <% for relationship in entity.relationships -%>
-@property (nonatomic, strong) <%= type_reader.relationship_type(relationship) %><%= relationship.name %>;
+@property (nonatomic, strong) <%= type_generator.relationship_type(relationship) %><%= relationship.name %>;
 <% end -%>
 @end
 <% if !entity.relationships.select { |e| e.to_many }.empty? %>

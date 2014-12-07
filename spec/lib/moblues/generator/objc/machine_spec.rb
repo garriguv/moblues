@@ -1,26 +1,27 @@
 require 'spec_helper'
-require 'moblues/generator/machine'
+require 'moblues/generator/objc/machine'
 require 'moblues/data_model'
 
-describe Moblues::Generator::Machine do
-  subject { described_class.new(output_dir: Fixtures.generated_dir) }
+describe Moblues::Generator::Objc::Machine do
+  let(:output_dir) { Fixtures.generated_dir(:objc) }
 
   after do
-    Fixtures.delete_tmp_files(%w{_Author.h _Author.m _Person.h _Person.m _Book.h _Book.m})
+    tmp_files = %w{Author Person Book Team}.map { |klass| %W{_#{klass}.h _#{klass}.m} }.flatten
+    Fixtures.delete_tmp_files(tmp_files, :objc)
   end
 
   describe '#generate' do
     shared_examples_for 'machine_generator' do |name|
       it 'generates a header' do
-        subject.generate(entity)
+        subject.generate(output_dir, entity)
 
-        expect(Fixtures.generated_file_content(header(name))).to eq(Fixtures.expected_content(header(name)))
+        expect(Fixtures.generated_file_content(header(name), :objc)).to eq(Fixtures.expected_content(header(name), :objc))
       end
 
       it 'generates an implementation' do
-        subject.generate(entity)
+        subject.generate(output_dir, entity)
 
-        expect(Fixtures.generated_file_content(implementation(name))).to eq(Fixtures.expected_content(implementation(name)))
+        expect(Fixtures.generated_file_content(implementation(name), :objc)).to eq(Fixtures.expected_content(implementation(name), :objc))
       end
     end
 

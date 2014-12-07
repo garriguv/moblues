@@ -7,6 +7,34 @@ FactoryGirl.define do
     name 'attribute'
     type :string
 
+    trait :string do
+      type :string
+    end
+
+    trait :number do
+      type :number
+    end
+
+    trait :decimal do
+      type :decimal
+    end
+
+    trait :date do
+      type :date
+    end
+
+    trait :data do
+      type :data
+    end
+
+    trait :id do
+      type :id
+    end
+
+    trait :unknown do
+      type :unknown
+    end
+
     initialize_with { new(name: name, type: type) }
   end
 end

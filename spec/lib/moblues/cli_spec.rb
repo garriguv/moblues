@@ -28,10 +28,20 @@ describe Moblues::CLI do
     context 'when options given' do
       let(:options) { %w{--model=model/path --human=human/path --machine=machine/path} }
 
-      it 'created the directories reads the model and generates the files' do
-        expect(Moblues).to receive(:generate).with('model/path', 'human/path', 'machine/path').once
+      it 'uses Moblues and defaults to objc' do
+        expect(Moblues).to receive(:generate).with('model/path', 'human/path', 'machine/path', :objc).once
 
         perform
+      end
+
+      context 'when using lang option' do
+        let(:options) { %w{--model=model/path --human=human/path --machine=machine/path --lang=swift} }
+
+        it 'uses Moblues' do
+          expect(Moblues).to receive(:generate).with('model/path', 'human/path', 'machine/path', :swift).once
+
+          perform
+        end
       end
     end
   end

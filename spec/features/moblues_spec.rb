@@ -7,30 +7,49 @@ describe 'moblues' do
 
   describe 'generate' do
     let(:command) { 'generate' }
-    let(:options) { %w{--model=spec/resources/Model.xcdatamodeld --human=spec/resources/tmp/human --machine=spec/resources/tmp/machine} }
 
-    after do
-      Fixtures.delete_tmp_files(machine_files + human_files.select { |f| !f.include?('Playlist') } )
-    end
+    let(:entities) { %w{User Playable Track Playlist} }
 
-    it 'generates human and machine files' do
-      perform
+    shared_examples_for 'generate' do |lang|
+      it 'generates human and machine files' do
+        perform
 
-      (machine_files + human_files).each do |file|
-        expect(Fixtures.read_file(Fixtures.generated_dir, file)).to eq(Fixtures.read_file(Fixtures.expected_dir, file))
+        (machine_files + human_files).each do |file|
+          expect(Fixtures.read_file(Fixtures.generated_dir(lang), file)).to eq(Fixtures.read_file(Fixtures.expected_dir(lang), file))
+        end
       end
     end
-  end
 
-  def machine_files
-    entities.map{|f| "machine/_#{f}" }.map{ |f| %W(#{f}.h #{f}.m) }.flatten
-  end
+    context 'swift' do
+      let(:options) { %w{--model=spec/resources/Model.xcdatamodeld --human=spec/resources/tmp/swift/human --machine=spec/resources/tmp/swift/machine --lang=swift} }
 
-  def human_files
-    entities.map{|f| "human/#{f}" }.map{ |f| %W(#{f}.h #{f}.m) }.flatten
-  end
+      let(:machine_files) { entities.map{|f| "machine/_#{f}.swift" } }
+      let(:human_files) { entities.map{|f| "human/#{f}.swift" } }
 
-  def entities
-    %w{User Playable Track Playlist}
+      after do
+        Fixtures.delete_tmp_files(machine_files + human_files.select { |f| !f.include?('Playlist') }, :swift)
+      end
+
+      it_behaves_like 'generate', :swift
+    end
+
+    context 'objc' do
+      let(:options) { %w{--model=spec/resources/Model.xcdatamodeld --human=spec/resources/tmp/objc/human --machine=spec/resources/tmp/objc/machine} }
+
+      let(:machine_files) { entities.map{|f| "machine/_#{f}" }.map{ |f| %W(#{f}.h #{f}.m) }.flatten }
+      let(:human_files) { entities.map{|f| "human/#{f}" }.map{ |f| %W(#{f}.h #{f}.m) }.flatten }
+
+      after do
+        Fixtures.delete_tmp_files(machine_files + human_files.select { |f| !f.include?('Playlist') }, :objc)
+      end
+
+      it 'generates human and machine files' do
+        perform
+
+        (machine_files + human_files).each do |file|
+          expect(Fixtures.read_file(Fixtures.generated_dir(:objc), file)).to eq(Fixtures.read_file(Fixtures.expected_dir(:objc), file))
+        end
+      end
+    end
   end
 end

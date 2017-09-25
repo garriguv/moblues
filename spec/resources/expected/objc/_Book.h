@@ -3,6 +3,7 @@
 
 @class Edition;
 
+NS_ASSUME_NONNULL_BEGIN
 @interface _Book : NSManagedObject
 @property (nonatomic, copy) NSString *name;
 
@@ -17,3 +18,4 @@
 - (void)removeEditions:(NSSet *)values;
 
 @end
+NS_ASSUME_NONNULL_END

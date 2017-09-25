@@ -6,6 +6,7 @@
 @class Track;
 @class User;
 
+NS_ASSUME_NONNULL_BEGIN
 @interface _Playlist : Playable
 
 @property (nonatomic, strong) NSOrderedSet *tracks;
@@ -26,3 +27,4 @@
 - (void)removeTracks:(NSOrderedSet *)values;
 
 @end
+NS_ASSUME_NONNULL_END

@@ -3,6 +3,7 @@
 
 @class Person;
 
+NS_ASSUME_NONNULL_BEGIN
 @interface _Team : NSManagedObject
 
 @property (nonatomic, strong) NSSet *teamMembers;
@@ -16,3 +17,4 @@
 - (void)removeTeamMembers:(NSSet *)values;
 
 @end
+NS_ASSUME_NONNULL_END

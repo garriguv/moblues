@@ -6,7 +6,7 @@ describe Moblues::Reader::Attribute do
     context 'when XML is valid' do
       let(:xml) { REXML::Document.new('<attribute name="testName" attributeType="String"/>').elements.first }
 
-      fit 'returns an Attribute object' do
+      it 'returns an Attribute object' do
         expect(subject.attribute(xml)).to eq(Moblues::DataModel::Attribute.new(name: 'testName', type: :string))
       end
     end

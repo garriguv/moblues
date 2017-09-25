@@ -9,6 +9,7 @@
 @class <%= class_name %>;
 <% end -%>
 
+NS_ASSUME_NONNULL_BEGIN
 @interface _<%= entity.name %> : <%= entity.parent_entity %>
 <% for attribute in entity.attributes -%>
 @property (<%= type_generator.property_attributes(attribute).join(', ') %>) <%= type_generator.attribute_type(attribute)%><%= attribute.name %>;
@@ -41,3 +42,4 @@
 <% end %>
 @end
 <% end -%>
+NS_ASSUME_NONNULL_END

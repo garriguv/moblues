@@ -1,7 +1,9 @@
 #import "<%= '_' + entity.name %>.h"
 
+NS_ASSUME_NONNULL_BEGIN
 @implementation <%= '_' + entity.name %>
 <% for property in entity.attributes + entity.relationships -%>
 @dynamic <%= property.name %>;
 <% end -%>
 @end
+NS_ASSUME_NONNULL_END

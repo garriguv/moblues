@@ -6,6 +6,7 @@
 @class Book;
 @class Publisher;
 
+NS_ASSUME_NONNULL_BEGIN
 @interface _Author : Person
 @property (nonatomic, strong) NSDate *dob;
 @property (nonatomic, copy) NSString *name;
@@ -34,3 +35,4 @@
 - (void)removeEssays:(NSSet *)values;
 
 @end
+NS_ASSUME_NONNULL_END

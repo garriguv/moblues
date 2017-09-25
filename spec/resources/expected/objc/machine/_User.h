@@ -4,6 +4,7 @@
 @class Playlist;
 @class Track;
 
+NS_ASSUME_NONNULL_BEGIN
 @interface _User : NSManagedObject
 @property (nonatomic, strong, nullable) NSDate *dob;
 @property (nonatomic, copy, nullable) NSString *name;
@@ -25,3 +26,4 @@
 - (void)removeTracks:(NSSet *)values;
 
 @end
+NS_ASSUME_NONNULL_END

@@ -5,8 +5,8 @@
 @class Track;
 
 @interface _User : NSManagedObject
-@property (nonatomic, strong) NSDate *dob;
-@property (nonatomic, copy) NSString *name;
+@property (nonatomic, strong, nullable) NSDate *dob;
+@property (nonatomic, copy, nullable) NSString *name;
 
 @property (nonatomic, strong) NSSet *playlists;
 @property (nonatomic, strong) NSSet *tracks;

@@ -3,7 +3,7 @@
 
 
 @interface _Playable : NSManagedObject
-@property (nonatomic, copy) NSString *permalink;
-@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy, nullable) NSString *permalink;
+@property (nonatomic, copy, nullable) NSString *title;
 
 @end

@@ -9,14 +9,19 @@ module Moblues
         end
 
         def property_attributes(attribute)
+          attributes = []
           case attribute.type
           when :string
-            %w{nonatomic copy}
+            attributes = %w{nonatomic copy}
           when :number, :decimal, :date, :data, :id
-            %w{nonatomic strong}
+            attributes = %w{nonatomic strong}
           else
             raise ArgumentError.new("unknown type #{type}")
           end
+          if attribute.optional
+            attributes << "nullable"
+          end
+          attributes
         end
       end
     end

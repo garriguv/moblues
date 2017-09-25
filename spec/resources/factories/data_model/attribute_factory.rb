@@ -6,6 +6,7 @@ FactoryGirl.define do
   factory :attribute, class: Moblues::DataModel::Attribute do
     name 'attribute'
     type :string
+    optional false
 
     trait :string do
       type :string
@@ -35,6 +36,10 @@ FactoryGirl.define do
       type :unknown
     end
 
-    initialize_with { new(name: name, type: type) }
+    trait :optional do
+      type :boolean
+    end
+
+    initialize_with { new(name: name, type: type, optional: optional) }
   end
 end

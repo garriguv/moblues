@@ -12,7 +12,8 @@ module Moblues
       def attribute(xml)
        DataModel::Attribute.new(
          name: xml.attributes['name'],
-         type: type_reader.map_type_str(xml.attributes['attributeType'])
+         type: type_reader.map_type_str(xml.attributes['attributeType']),
+         optional: xml.attributes['optional'] == 'YES'
        )
       end
 
